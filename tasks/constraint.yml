@@ -1,4 +1,6 @@
 ---
+- include_tasks: pre.yml
+
 - name: Create {{ pcmk_constraint.type }} pcmk_constraint
   xml:
     path: "{{ pcmk_config.path }}"
@@ -47,3 +49,5 @@
     loop_var: attr_name
     label: "{{ '{%s: %s}' | format(attr_name, pcmk_constraint[attr_name]) }}"
   check_mode: false
+
+- include_tasks: post.yml
